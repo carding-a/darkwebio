@@ -1,0 +1,2514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Credit Cards Store</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+        color: white;
+        min-height: 100vh;
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+    }
+
+    /* Header Styles */
+    .header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .header h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        background: linear-gradient(45deg, #ef4444, #14b8a6, #3b82f6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 1rem;
+    }
+
+    .header p {
+        font-size: 1.25rem;
+        color: #d1d5db;
+    }
+
+    /* Card Styles */
+    .card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 1rem;
+        backdrop-filter: blur(10px);
+        margin-bottom: 2rem;
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+    }
+
+    .card-content {
+        padding: 1.5rem;
+    }
+
+    /* Notice Section */
+    .notice-section {
+        background: rgba(251, 191, 36, 0.1);
+        border: 1px solid rgba(251, 191, 36, 0.3);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .notice-title {
+        color: #fbbf24;
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+
+    .notice-text {
+        color: #d1d5db;
+        margin-bottom: 0.5rem;
+    }
+
+    .notice-contact {
+        color: #14b8a6;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    .notice-contact:hover {
+        color: #0f766e;
+    }
+
+    .restriction-notice {
+        background: rgba(239, 68, 68, 0.1);
+        border: 1px solid rgba(239, 68, 68, 0.3);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+
+    .restriction-notice h4 {
+        color: #ef4444;
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .restriction-notice p {
+        color: #d1d5db;
+        font-size: 0.875rem;
+    }
+
+    /* Auth Section */
+    .auth-section {
+        text-align: center;
+    }
+
+    .auth-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn-primary {
+        background: linear-gradient(45deg, #14b8a6, #3b82f6);
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background: linear-gradient(45deg, #0f766e, #2563eb);
+    }
+
+    .btn-outline {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+    }
+
+    .btn-outline:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Form Styles */
+    .form {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 0.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        font-size: 1rem;
+    }
+
+    .form-input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .form-select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 0.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+    }
+
+    /* Info Section */
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1rem;
+    }
+
+    .info-item {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        border-left: 4px solid #14b8a6;
+    }
+
+    .info-item h3 {
+        color: #14b8a6;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .credit-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        transition: all 0.3s ease;
+    }
+
+    .credit-card:hover {
+        transform: translateY(-8px);
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .country-info {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .flag {
+        width: 32px;
+        height: 24px;
+        border-radius: 4px;
+        object-fit: cover;
+    }
+
+    .card-type {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-size: 0.875rem;
+    }
+
+    .card-visual {
+        height: 200px;
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        position: relative;
+    }
+
+    .card-visa {
+        background: linear-gradient(135deg, #1e3a8a, #3730a3);
+    }
+
+    .card-mastercard {
+        background: linear-gradient(135deg, #b91c1c, #ea580c);
+    }
+
+    .card-amex {
+        background: linear-gradient(135deg, #1e40af, #2563eb);
+    }
+
+    .card-paypal {
+        background: linear-gradient(135deg, #0070ba, #003087);
+    }
+
+    .card-chip {
+        width: 40px;
+        height: 32px;
+        background: linear-gradient(135deg, #fbbf24, #f59e0b);
+        border-radius: 4px;
+    }
+
+    .card-number {
+        font-family: 'Courier New', monospace;
+        font-size: 1.125rem;
+        letter-spacing: 2px;
+    }
+
+    .card-details {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.875rem;
+    }
+
+    .balance {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .balance-amount {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #14b8a6;
+    }
+
+    .price {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #ef4444;
+        margin-bottom: 1rem;
+    }
+
+    .payment-methods {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+
+    .payment-btn {
+        padding: 0.5rem;
+        border: none;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 0.875rem;
+        transition: all 0.3s ease;
+    }
+
+    .payment-btn.binance {
+        background: #f59e0b;
+        color: black;
+    }
+
+    .payment-btn.binance:hover {
+        background: #d97706;
+    }
+
+    .payment-btn.bidget {
+        background: #3b82f6;
+        color: white;
+    }
+
+    .payment-btn.bidget:hover {
+        background: #2563eb;
+    }
+
+    .payment-btn.okx {
+        background: #2563eb;
+        color: white;
+    }
+
+    .payment-btn.okx:hover {
+        background: #1d4ed8;
+    }
+
+    .payment-btn.skrill {
+        background: #7c3aed;
+        color: white;
+    }
+
+    .payment-btn.skrill:hover {
+        background: #6d28d9;
+    }
+
+    .payment-btn.paxful {
+        background: #22c55e;
+        color: white;
+    }
+
+    .payment-btn.paxful:hover {
+        background: #16a34a;
+    }
+
+    .payment-btn.bybit, .payment-btn.payoneer {
+        background: #6b7280;
+        color: white;
+    }
+
+    .payment-btn.bybit:hover, .payment-btn.payoneer:hover {
+        background: #4b5563;
+    }
+
+    /* Modal Styles */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        backdrop-filter: blur(5px);
+    }
+
+    .modal.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-content {
+        background: #1f2937;
+        border: 1px solid #374151;
+        border-radius: 1rem;
+        max-width: 600px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 2rem;
+        position: relative;
+    }
+
+    .modal-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .modal-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #f59e0b;
+        margin-bottom: 1rem;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .payment-info {
+        background: #374151;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .copy-btn {
+        background: #14b8a6;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        font-size: 0.875rem;
+    }
+
+    .copy-btn:hover {
+        background: #0f766e;
+    }
+
+    .instructions {
+        background: #374151;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .step {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .step-number {
+        width: 32px;
+        height: 32px;
+        background: #3b82f6;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+
+    .warning {
+        background: rgba(239, 68, 68, 0.2);
+        border: 1px solid rgba(239, 68, 68, 0.5);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .warning h4 {
+        color: #ef4444;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Gift Cards */
+    .gift-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        transition: all 0.3s ease;
+    }
+
+    .gift-card:hover {
+        transform: translateY(-8px);
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .gift-card-visual {
+        height: 200px;
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .gift-card-visual.ebay {
+        background: linear-gradient(135deg, #dc2626, #2563eb);
+    }
+
+    .gift-card-visual.amazon {
+        background: linear-gradient(135deg, #ea580c, #374151);
+    }
+
+    .gift-card-visual.amex-gift {
+        background: linear-gradient(135deg, #1e40af, #2563eb);
+    }
+
+    .gift-card-logo {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+
+    .gift-card-amount {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    /* Screenshot Upload Section */
+    .upload-section {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 1rem;
+        padding: 2rem;
+        margin-top: 3rem;
+        text-align: center;
+    }
+
+    .upload-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #14b8a6;
+        margin-bottom: 1rem;
+    }
+
+    .upload-form {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .file-input-wrapper {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px dashed rgba(255, 255, 255, 0.3);
+        border-radius: 0.5rem;
+        padding: 2rem;
+        margin-bottom: 1rem;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+
+    .file-input-wrapper:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: #14b8a6;
+    }
+
+    .file-input {
+        position: absolute;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    .file-input-text {
+        color: #d1d5db;
+        font-size: 1rem;
+    }
+
+    .file-preview {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 0.5rem;
+        display: none;
+    }
+
+    .file-preview img {
+        max-width: 100%;
+        max-height: 200px;
+        border-radius: 0.5rem;
+    }
+
+    /* Logout Section */
+    .logout-section {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 100;
+    }
+
+    .logout-btn {
+        background: rgba(239, 68, 68, 0.9);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+    }
+
+    .logout-btn:hover {
+        background: rgba(220, 38, 38, 0.9);
+        transform: translateY(-2px);
+    }
+
+    /* Copyright Section */
+    .copyright-section {
+        text-align: center;
+        padding: 3rem 2rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 1rem;
+        margin-top: 3rem;
+        margin-bottom: 2rem;
+    }
+
+    .copyright-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #14b8a6;
+        margin-bottom: 1rem;
+    }
+
+    .copyright-text {
+        color: #d1d5db;
+        font-size: 0.875rem;
+        line-height: 1.6;
+        margin-bottom: 0.5rem;
+    }
+
+    .copyright-year {
+        color: #9ca3af;
+        font-size: 0.75rem;
+        margin-top: 1rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .header h1 {
+            font-size: 2rem;
+        }
+
+        .cards-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .auth-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .payment-methods {
+            grid-template-columns: 1fr;
+        }
+
+        .modal-content {
+            padding: 1rem;
+            margin: 1rem;
+        }
+
+        .logout-section {
+            bottom: 10px;
+            right: 10px;
+        }
+    }
+
+    /* Loading Overlay */
+    .loading-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .loading-overlay.active {
+        display: flex;
+    }
+
+    .spinner {
+        width: 48px;
+        height: 48px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid #14b8a6;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .section-title {
+        text-align: center;
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 2rem;
+    }
+
+    .section-title h2 {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #14b8a6;
+        margin-bottom: 0.5rem;
+    }
+
+    .section-title p {
+        color: #d1d5db;
+        font-size: 1.125rem;
+    }
+
+    .verification-notice {
+        background: rgba(34, 197, 94, 0.1);
+        border: 1px solid rgba(34, 197, 94, 0.3);
+        border-radius: 0.5rem;
+        padding: 1rem;
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    .verification-notice p {
+        color: #22c55e;
+        font-size: 0.875rem;
+        margin: 0;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <h1>Premium Credit Cards Store</h1>
+        <p>Choose from our exclusive collection of premium credit cards with high balances</p>
+    </div>
+
+    <!-- Notice Section -->
+    <div class="notice-section">
+        <div class="notice-title">📢 Important Notice</div>
+        <div class="notice-text">Some payment methods may not work at the time due to maintenance or technical issues.</div>
+        <div class="notice-text">We also buy 2D cards for resale. Sellers contact us at: <span class="notice-contact" onclick="openEmail()">cardersworldwide@gmail.com</span></div>
+        <div class="notice-text">For support and assistance, contact: <span class="notice-contact" onclick="openEmail()">cardersworldwide@gmail.com</span></div>
+        
+        <div class="restriction-notice">
+            <h4>🚫 Service Restrictions</h4>
+            <p>Carders Worldwide services are not available in North Korea and Vietnam due to regulatory restrictions.</p>
+        </div>
+    </div>
+
+    <!-- Auth Section -->
+    <div class="card">
+        <div class="card-content">
+            <div id="auth-section">
+                <div id="auth-buttons" class="auth-buttons">
+                    <button class="btn btn-primary" onclick="showLogin()">Login</button>
+                    <button class="btn btn-outline" onclick="showRegister()">Create Account</button>
+                </div>
+
+                <!-- Login Form -->
+                <form id="login-form" class="form hidden" onsubmit="handleLogin(event)">
+                    <h3 style="text-align: center; color: #14b8a6; margin-bottom: 1.5rem;">Login to Your Account</h3>
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-input" id="login-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+                    <p style="text-align: center; margin-top: 1rem; color: #9ca3af;">
+                        Don't have an account? 
+                        <a href="#" onclick="showRegister()" style="color: #14b8a6;">Create one</a>
+                    </p>
+                </form>
+
+                <!-- Register Form -->
+                <form id="register-form" class="form hidden" onsubmit="handleRegister(event)">
+                    <h3 style="text-align: center; color: #14b8a6; margin-bottom: 1.5rem;">Create New Account</h3>
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-input" id="register-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" id="register-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Country</label>
+                        <select class="form-select" id="register-country" required>
+                            <option value="">Select your country</option>
+                            <!-- All countries except North Korea and Vietnam -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mobile Number</label>
+                        <input type="tel" class="form-input" id="register-mobile" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-input" id="register-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password" class="form-input" id="register-confirm-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
+                    <div class="verification-notice">
+                        <p>🔒 A verification email will be sent to your email address for security purposes. Your login details will be remembered for 24 hours.</p>
+                    </div>
+                    <p style="text-align: center; margin-top: 1rem; color: #9ca3af;">
+                        Already have an account? 
+                        <a href="#" onclick="showLogin()" style="color: #14b8a6;">Login here</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Section -->
+    <div class="card">
+        <div class="card-content">
+            <h2 style="text-align: center; color: #14b8a6; margin-bottom: 1.5rem;">📋 Important Information</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <h3>📸 Screenshot Verification</h3>
+                    <p>Upload your payment screenshot for faster processing and verification. Our team reviews all submissions within 30 minutes.</p>
+                </div>
+                <div class="info-item">
+                    <h3>⏰ Processing Time</h3>
+                    <p>Please wait within 45 minutes after payment is confirmed for card details delivery.</p>
+                </div>
+                <div class="info-item">
+                    <h3>💳 Card Type</h3>
+                    <p>All cards are 2D cards suitable for online transactions and digital payments.</p>
+                </div>
+                <div class="info-item">
+                    <h3>⚠️ Support Policy</h3>
+                    <p>Raise complaints within 24 hours in case of any issues. Support available 24/7 at <span class="notice-contact" onclick="openEmail()">cardersworldwide@gmail.com</span></p>
+                </div>
+                <div class="info-item">
+                    <h3>📅 Usage Period</h3>
+                    <p>Please use the card within 8 days after purchase for optimal performance and validity.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Credit Cards Section -->
+    <div class="section-title">
+        <h2>💳 Premium Credit Cards</h2>
+        <p>High balance credit cards from trusted international banks</p>
+    </div>
+
+    <div class="cards-grid" id="credit-cards-grid">
+        <!-- Credit cards will be generated by JavaScript -->
+    </div>
+
+    <!-- Gift Cards Section -->
+    <div class="section-title">
+        <h2>🎁 Premium Gift Cards</h2>
+        <p>Popular gift cards for shopping and entertainment</p>
+    </div>
+
+    <div class="cards-grid" id="gift-cards-grid">
+        <!-- Gift cards will be generated by JavaScript -->
+    </div>
+
+    <!-- PayPal Transfers Section -->
+    <div class="section-title">
+        <h2>💰 PayPal Transfers</h2>
+        <p>Instant PayPal money transfers with competitive rates</p>
+    </div>
+
+    <div class="cards-grid" id="paypal-transfers-grid">
+        <!-- PayPal transfers will be generated by JavaScript -->
+    </div>
+
+    <!-- Screenshot Upload Section -->
+    <div class="upload-section">
+        <div class="upload-title">📸 Submit Payment Screenshot</div>
+        <p style="color: #d1d5db; margin-bottom: 2rem;">Upload your payment screenshot for faster processing and verification</p>
+        
+        <form class="upload-form" onsubmit="handleScreenshotUpload(event)">
+            <div class="form-group">
+                <label class="form-label">Order ID (Optional)</label>
+                <input type="text" class="form-input" id="order-id" placeholder="Enter your order ID">
+            </div>
+            
+            <div class="file-input-wrapper">
+                <input type="file" class="file-input" id="screenshot-file" accept="image/*" onchange="previewFile()" required>
+                <div class="file-input-text">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📷</div>
+                    <div>Click to select screenshot or drag and drop</div>
+                    <div style="font-size: 0.875rem; color: #9ca3af; margin-top: 0.5rem;">Supported formats: JPG, PNG, GIF (Max 10MB)</div>
+                </div>
+            </div>
+            
+            <div class="file-preview" id="file-preview">
+                <div style="color: #14b8a6; font-weight: 600; margin-bottom: 0.5rem;">Preview:</div>
+                <img id="preview-image" alt="Screenshot preview">
+                <div id="file-info" style="margin-top: 0.5rem; font-size: 0.875rem; color: #9ca3af;"></div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Additional Notes (Optional)</label>
+                <textarea class="form-input" id="upload-notes" rows="3" placeholder="Add any additional information about your payment..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Screenshot</button>
+        </form>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="copyright-section">
+        <div class="copyright-title">© Premium Credit Cards Store</div>
+        <div class="copyright-text">All rights reserved. This website and its content are protected by copyright law.</div>
+        <div class="copyright-text">Unauthorized reproduction, distribution, or use of any materials is strictly prohibited.</div>
+        <div class="copyright-text">For inquiries regarding licensing or permissions, please contact our support team at <span class="notice-contact" onclick="openEmail()">cardersworldwide@gmail.com</span></div>
+        <div class="copyright-text">Premium Credit Cards Store is a registered trademark. All product names, logos, and brands are property of their respective owners.</div>
+        <div class="copyright-year">Copyright © 2024 Premium Credit Cards Store. All Rights Reserved.</div>
+    </div>
+</div>
+
+<!-- Logout Button (Fixed Position) -->
+<div class="logout-section hidden" id="logout-section">
+    <button class="logout-btn" onclick="logout()">Logout</button>
+</div>
+
+<!-- Payment Modals -->
+<div id="payment-modal" class="modal">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+        <div id="modal-body">
+            <!-- Modal content will be populated by JavaScript -->
+        </div>
+    </div>
+</div>
+
+<!-- Loading Overlay -->
+<div id="loading-overlay" class="loading-overlay">
+    <div style="text-align: center;">
+        <div class="spinner"></div>
+        <div style="margin-top: 1rem; font-size: 1.25rem;">Processing...</div>
+    </div>
+</div>
+
+<script>
+    // Global variables
+    let currentUser = null;
+    let creditCards = [];
+    let giftCards = [];
+    let paypalTransfers = [];
+
+    // All countries except North Korea and Vietnam
+    const allCountries = [
+        { code: 'AF', name: 'Afghanistan' },
+        { code: 'AL', name: 'Albania' },
+        { code: 'DZ', name: 'Algeria' },
+        { code: 'AD', name: 'Andorra' },
+        { code: 'AO', name: 'Angola' },
+        { code: 'AG', name: 'Antigua and Barbuda' },
+        { code: 'AR', name: 'Argentina' },
+        { code: 'AM', name: 'Armenia' },
+        { code: 'AU', name: 'Australia' },
+        { code: 'AT', name: 'Austria' },
+        { code: 'AZ', name: 'Azerbaijan' },
+        { code: 'BS', name: 'Bahamas' },
+        { code: 'BH', name: 'Bahrain' },
+        { code: 'BD', name: 'Bangladesh' },
+        { code: 'BB', name: 'Barbados' },
+        { code: 'BY', name: 'Belarus' },
+        { code: 'BE', name: 'Belgium' },
+        { code: 'BZ', name: 'Belize' },
+        { code: 'BJ', name: 'Benin' },
+        { code: 'BT', name: 'Bhutan' },
+        { code: 'BO', name: 'Bolivia' },
+        { code: 'BA', name: 'Bosnia and Herzegovina' },
+        { code: 'BW', name: 'Botswana' },
+        { code: 'BR', name: 'Brazil' },
+        { code: 'BN', name: 'Brunei' },
+        { code: 'BG', name: 'Bulgaria' },
+        { code: 'BF', name: 'Burkina Faso' },
+        { code: 'BI', name: 'Burundi' },
+        { code: 'CV', name: 'Cabo Verde' },
+        { code: 'KH', name: 'Cambodia' },
+        { code: 'CM', name: 'Cameroon' },
+        { code: 'CA', name: 'Canada' },
+        { code: 'CF', name: 'Central African Republic' },
+        { code: 'TD', name: 'Chad' },
+        { code: 'CL', name: 'Chile' },
+        { code: 'CN', name: 'China' },
+        { code: 'CO', name: 'Colombia' },
+        { code: 'KM', name: 'Comoros' },
+        { code: 'CG', name: 'Congo' },
+        { code: 'CD', name: 'Congo (Democratic Republic)' },
+        { code: 'CR', name: 'Costa Rica' },
+        { code: 'CI', name: 'Côte d\'Ivoire' },
+        { code: 'HR', name: 'Croatia' },
+        { code: 'CU', name: 'Cuba' },
+        { code: 'CY', name: 'Cyprus' },
+        { code: 'CZ', name: 'Czech Republic' },
+        { code: 'DK', name: 'Denmark' },
+        { code: 'DJ', name: 'Djibouti' },
+        { code: 'DM', name: 'Dominica' },
+        { code: 'DO', name: 'Dominican Republic' },
+        { code: 'EC', name: 'Ecuador' },
+        { code: 'EG', name: 'Egypt' },
+        { code: 'SV', name: 'El Salvador' },
+        { code: 'GQ', name: 'Equatorial Guinea' },
+        { code: 'ER', name: 'Eritrea' },
+        { code: 'EE', name: 'Estonia' },
+        { code: 'SZ', name: 'Eswatini' },
+        { code: 'ET', name: 'Ethiopia' },
+        { code: 'FJ', name: 'Fiji' },
+        { code: 'FI', name: 'Finland' },
+        { code: 'FR', name: 'France' },
+        { code: 'GA', name: 'Gabon' },
+        { code: 'GM', name: 'Gambia' },
+        { code: 'GE', name: 'Georgia' },
+        { code: 'DE', name: 'Germany' },
+        { code: 'GH', name: 'Ghana' },
+        { code: 'GR', name: 'Greece' },
+        { code: 'GD', name: 'Grenada' },
+        { code: 'GT', name: 'Guatemala' },
+        { code: 'GN', name: 'Guinea' },
+        { code: 'GW', name: 'Guinea-Bissau' },
+        { code: 'GY', name: 'Guyana' },
+        { code: 'HT', name: 'Haiti' },
+        { code: 'HN', name: 'Honduras' },
+        { code: 'HU', name: 'Hungary' },
+        { code: 'IS', name: 'Iceland' },
+        { code: 'IN', name: 'India' },
+        { code: 'ID', name: 'Indonesia' },
+        { code: 'IR', name: 'Iran' },
+        { code: 'IQ', name: 'Iraq' },
+        { code: 'IE', name: 'Ireland' },
+        { code: 'IL', name: 'Israel' },
+        { code: 'IT', name: 'Italy' },
+        { code: 'JM', name: 'Jamaica' },
+        { code: 'JP', name: 'Japan' },
+        { code: 'JO', name: 'Jordan' },
+        { code: 'KZ', name: 'Kazakhstan' },
+        { code: 'KE', name: 'Kenya' },
+        { code: 'KI', name: 'Kiribati' },
+        { code: 'KW', name: 'Kuwait' },
+        { code: 'KG', name: 'Kyrgyzstan' },
+        { code: 'LA', name: 'Laos' },
+        { code: 'LV', name: 'Latvia' },
+        { code: 'LB', name: 'Lebanon' },
+        { code: 'LS', name: 'Lesotho' },
+        { code: 'LR', name: 'Liberia' },
+        { code: 'LY', name: 'Libya' },
+        { code: 'LI', name: 'Liechtenstein' },
+        { code: 'LT', name: 'Lithuania' },
+        { code: 'LU', name: 'Luxembourg' },
+        { code: 'MG', name: 'Madagascar' },
+        { code: 'MW', name: 'Malawi' },
+        { code: 'MY', name: 'Malaysia' },
+        { code: 'MV', name: 'Maldives' },
+        { code: 'ML', name: 'Mali' },
+        { code: 'MT', name: 'Malta' },
+        { code: 'MH', name: 'Marshall Islands' },
+        { code: 'MR', name: 'Mauritania' },
+        { code: 'MU', name: 'Mauritius' },
+        { code: 'MX', name: 'Mexico' },
+        { code: 'FM', name: 'Micronesia' },
+        { code: 'MD', name: 'Moldova' },
+        { code: 'MC', name: 'Monaco' },
+        { code: 'MN', name: 'Mongolia' },
+        { code: 'ME', name: 'Montenegro' },
+        { code: 'MA', name: 'Morocco' },
+        { code: 'MZ', name: 'Mozambique' },
+        { code: 'MM', name: 'Myanmar' },
+        { code: 'NA', name: 'Namibia' },
+        { code: 'NR', name: 'Nauru' },
+        { code: 'NP', name: 'Nepal' },
+        { code: 'NL', name: 'Netherlands' },
+        { code: 'NZ', name: 'New Zealand' },
+        { code: 'NI', name: 'Nicaragua' },
+        { code: 'NE', name: 'Niger' },
+        { code: 'NG', name: 'Nigeria' },
+        { code: 'MK', name: 'North Macedonia' },
+        { code: 'NO', name: 'Norway' },
+        { code: 'OM', name: 'Oman' },
+        { code: 'PK', name: 'Pakistan' },
+        { code: 'PW', name: 'Palau' },
+        { code: 'PS', name: 'Palestine' },
+        { code: 'PA', name: 'Panama' },
+        { code: 'PG', name: 'Papua New Guinea' },
+        { code: 'PY', name: 'Paraguay' },
+        { code: 'PE', name: 'Peru' },
+        { code: 'PH', name: 'Philippines' },
+        { code: 'PL', name: 'Poland' },
+        { code: 'PT', name: 'Portugal' },
+        { code: 'QA', name: 'Qatar' },
+        { code: 'RO', name: 'Romania' },
+        { code: 'RU', name: 'Russia' },
+        { code: 'RW', name: 'Rwanda' },
+        { code: 'KN', name: 'Saint Kitts and Nevis' },
+        { code: 'LC', name: 'Saint Lucia' },
+        { code: 'VC', name: 'Saint Vincent and the Grenadines' },
+        { code: 'WS', name: 'Samoa' },
+        { code: 'SM', name: 'San Marino' },
+        { code: 'ST', name: 'São Tomé and Príncipe' },
+        { code: 'SA', name: 'Saudi Arabia' },
+        { code: 'SN', name: 'Senegal' },
+        { code: 'RS', name: 'Serbia' },
+        { code: 'SC', name: 'Seychelles' },
+        { code: 'SL', name: 'Sierra Leone' },
+        { code: 'SG', name: 'Singapore' },
+        { code: 'SK', name: 'Slovakia' },
+        { code: 'SI', name: 'Slovenia' },
+        { code: 'SB', name: 'Solomon Islands' },
+        { code: 'SO', name: 'Somalia' },
+        { code: 'ZA', name: 'South Africa' },
+        { code: 'KR', name: 'South Korea' },
+        { code: 'SS', name: 'South Sudan' },
+        { code: 'ES', name: 'Spain' },
+        { code: 'LK', name: 'Sri Lanka' },
+        { code: 'SD', name: 'Sudan' },
+        { code: 'SR', name: 'Suriname' },
+        { code: 'SE', name: 'Sweden' },
+        { code: 'CH', name: 'Switzerland' },
+        { code: 'SY', name: 'Syria' },
+        { code: 'TW', name: 'Taiwan' },
+        { code: 'TJ', name: 'Tajikistan' },
+        { code: 'TZ', name: 'Tanzania' },
+        { code: 'TH', name: 'Thailand' },
+        { code: 'TL', name: 'Timor-Leste' },
+        { code: 'TG', name: 'Togo' },
+        { code: 'TO', name: 'Tonga' },
+        { code: 'TT', name: 'Trinidad and Tobago' },
+        { code: 'TN', name: 'Tunisia' },
+        { code: 'TR', name: 'Turkey' },
+        { code: 'TM', name: 'Turkmenistan' },
+        { code: 'TV', name: 'Tuvalu' },
+        { code: 'UG', name: 'Uganda' },
+        { code: 'UA', name: 'Ukraine' },
+        { code: 'AE', name: 'United Arab Emirates' },
+        { code: 'GB', name: 'United Kingdom' },
+        { code: 'US', name: 'United States' },
+        { code: 'UY', name: 'Uruguay' },
+        { code: 'UZ', name: 'Uzbekistan' },
+        { code: 'VU', name: 'Vanuatu' },
+        { code: 'VA', name: 'Vatican City' },
+        { code: 'VE', name: 'Venezuela' },
+        { code: 'YE', name: 'Yemen' },
+        { code: 'ZM', name: 'Zambia' },
+        { code: 'ZW', name: 'Zimbabwe' }
+    ];
+
+    // Initialize the application
+    document.addEventListener('DOMContentLoaded', function() {
+        loadUser();
+        populateCountrySelect();
+        generateCreditCards();
+        generateGiftCards();
+        generatePayPalTransfers();
+    });
+
+    // Email functionality
+    function openEmail() {
+        window.location.href = 'mailto:cardersworldwide@gmail.com';
+    }
+
+    // Populate country select with all countries except North Korea and Vietnam
+    function populateCountrySelect() {
+        const countrySelect = document.getElementById('register-country');
+        allCountries.forEach(country => {
+            const option = document.createElement('option');
+            option.value = country.code;
+            option.textContent = country.name;
+            countrySelect.appendChild(option);
+        });
+    }
+
+    // User management
+    function loadUser() {
+        const savedUser = localStorage.getItem('currentUser');
+        const loginTime = localStorage.getItem('loginTime');
+        
+        if (savedUser && loginTime) {
+            const currentTime = new Date().getTime();
+            const timeDiff = currentTime - parseInt(loginTime);
+            const hoursDiff = timeDiff / (1000 * 60 * 60);
+            
+            if (hoursDiff < 24) {
+                currentUser = JSON.parse(savedUser);
+                showLoggedInState();
+            } else {
+                // Clear expired session
+                localStorage.removeItem('currentUser');
+                localStorage.removeItem('loginTime');
+            }
+        }
+    }
+
+    function showLogin() {
+        document.getElementById('auth-buttons').classList.add('hidden');
+        document.getElementById('register-form').classList.add('hidden');
+        document.getElementById('login-form').classList.remove('hidden');
+    }
+
+    function showRegister() {
+        document.getElementById('auth-buttons').classList.add('hidden');
+        document.getElementById('login-form').classList.add('hidden');
+        document.getElementById('register-form').classList.remove('hidden');
+    }
+
+    function showLoggedInState() {
+        // Hide all auth elements
+        document.getElementById('auth-buttons').classList.add('hidden');
+        document.getElementById('login-form').classList.add('hidden');
+        document.getElementById('register-form').classList.add('hidden');
+        
+        // Show logout button at bottom
+        document.getElementById('logout-section').classList.remove('hidden');
+    }
+
+    function showAuthButtons() {
+        document.getElementById('auth-buttons').classList.remove('hidden');
+        document.getElementById('login-form').classList.add('hidden');
+        document.getElementById('register-form').classList.add('hidden');
+        document.getElementById('logout-section').classList.add('hidden');
+    }
+
+    function handleLogin(event) {
+        event.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+        const user = users.find(u => u.email === email && u.password === password);
+
+        if (user) {
+            currentUser = user;
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            localStorage.setItem('loginTime', new Date().getTime().toString());
+            showLoggedInState();
+            document.getElementById('login-form').reset();
+            showToast('Login successful! Welcome back.');
+        } else {
+            alert('Invalid email or password. Please try again.');
+        }
+    }
+
+    function handleRegister(event) {
+        event.preventDefault();
+        const name = document.getElementById('register-name').value;
+        const email = document.getElementById('register-email').value;
+        const country = document.getElementById('register-country').value;
+        const mobile = document.getElementById('register-mobile').value;
+        const password = document.getElementById('register-password').value;
+        const confirmPassword = document.getElementById('register-confirm-password').value;
+
+        if (password !== confirmPassword) {
+            alert('Passwords do not match!');
+            return;
+        }
+
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+        
+        if (users.find(u => u.email === email)) {
+            alert('An account with this email already exists.');
+            return;
+        }
+
+        const newUser = { name, email, country, mobile, password };
+        users.push(newUser);
+        localStorage.setItem('users', JSON.stringify(users));
+
+        currentUser = newUser;
+        localStorage.setItem('currentUser', JSON.stringify(newUser));
+        localStorage.setItem('loginTime', new Date().getTime().toString());
+        showLoggedInState();
+        document.getElementById('register-form').reset();
+        
+        // Simulate sending verification email
+        showToast('Account created successfully! Verification email sent to ' + email);
+    }
+
+    function logout() {
+        currentUser = null;
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('loginTime');
+        showAuthButtons();
+        showToast('Logged out successfully.');
+    }
+
+    // Card generation functions
+    function generateRandomCardNumber(type) {
+        let prefix, length;
+        
+        if (type === 'VISA') {
+            const prefixes = ['4532', '4556', '4716', '4929', '4485', '4024'];
+            prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+            length = 16;
+        } else if (type === 'Mastercard') {
+            const prefixes = ['5555', '5105', '5205', '5305', '5405', '5505'];
+            prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+            length = 16;
+        } else if (type === 'AMEX') {
+            const prefixes = ['3400', '3700'];
+            prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+            length = 15;
+        }
+        
+        let cardNumber = prefix;
+        const remainingDigits = length - prefix.length;
+        
+        for (let i = 0; i < remainingDigits; i++) {
+            cardNumber += Math.floor(Math.random() * 10);
+        }
+        
+        return cardNumber;
+    }
+
+    function generateCreditCards() {
+        const cardTypes = ['VISA', 'Mastercard', 'AMEX'];
+        // Only US, UK, Australia, and Canada for cards
+        const countries = [
+            { code: 'us', name: 'United States' },
+            { code: 'gb', name: 'United Kingdom' },
+            { code: 'au', name: 'Australia' },
+            { code: 'ca', name: 'Canada' }
+        ];
+        const holderNames = [
+            'ALEX JOHNSON', 'SARAH WILSON', 'MIKE BROWN', 'EMMA DAVIS',
+            'JAMES MILLER', 'LISA GARCIA', 'DAVID MARTINEZ', 'ANNA RODRIGUEZ',
+            'ROBERT TAYLOR', 'JENNIFER ANDERSON', 'MICHAEL THOMAS', 'JESSICA JACKSON',
+            'WILLIAM MOORE', 'ASHLEY WHITE', 'CHRISTOPHER HARRIS', 'AMANDA MARTIN'
+        ];
+
+        creditCards = [];
+        for (let i = 0; i < 36; i++) {
+            const cardType = cardTypes[i % cardTypes.length];
+            const country = countries[i % countries.length];
+            
+            let balance, price;
+            
+            // Ensure Visa and Mastercard have minimum $50 price
+            if (cardType === 'VISA' || cardType === 'Mastercard') {
+                // Balance range: $700-$6500 for Visa/Mastercard
+                balance = Math.floor(Math.random() * (6500 - 700 + 1)) + 700;
+                // Price range: $50-$210 for Visa/Mastercard
+                price = Math.floor(50 + (balance - 700) / (6500 - 700) * (210 - 50));
+            } else {
+                // AMEX can have lower prices
+                balance = Math.floor(Math.random() * (4500 - 500 + 1)) + 500;
+                price = Math.floor(25 + (balance - 500) / (4500 - 500) * (150 - 25));
+            }
+            
+            const cardNumber = generateRandomCardNumber(cardType);
+            const maskedNumber = cardNumber.substring(0, 4) + ' **** **** ' + cardNumber.substring(cardNumber.length - 4);
+
+            creditCards.push({
+                id: i + 1,
+                type: cardType,
+                price: price,
+                balance: balance,
+                number: cardNumber,
+                maskedNumber: maskedNumber,
+                holderName: holderNames[i % holderNames.length],
+                expiry: '12/' + (26 + Math.floor(i / 12)),
+                country: country
+            });
+        }
+
+        renderCreditCards();
+    }
+
+    function generateGiftCards() {
+        giftCards = [
+            // eBay Gift Cards - minimum $38
+            { id: 'ebay-1', type: 'eBay Gift Card', amount: 100, price: 38, logo: 'eBay', class: 'ebay' },
+            { id: 'ebay-2', type: 'eBay Gift Card', amount: 200, price: 45, logo: 'eBay', class: 'ebay' },
+            { id: 'ebay-3', type: 'eBay Gift Card', amount: 500, price: 95, logo: 'eBay', class: 'ebay' },
+            { id: 'ebay-4', type: 'eBay Gift Card', amount: 1000, price: 180, logo: 'eBay', class: 'ebay' },
+            { id: 'ebay-5', type: 'eBay Gift Card', amount: 2000, price: 340, logo: 'eBay', class: 'ebay' },
+            
+            // Amazon Gift Cards - minimum $38
+            { id: 'amazon-1', type: 'Amazon Gift Card', amount: 100, price: 38, logo: 'amazon', class: 'amazon' },
+            { id: 'amazon-2', type: 'Amazon Gift Card', amount: 250, price: 65, logo: 'amazon', class: 'amazon' },
+            { id: 'amazon-3', type: 'Amazon Gift Card', amount: 500, price: 125, logo: 'amazon', class: 'amazon' },
+            { id: 'amazon-4', type: 'Amazon Gift Card', amount: 1000, price: 240, logo: 'amazon', class: 'amazon' },
+            { id: 'amazon-5', type: 'Amazon Gift Card', amount: 2500, price: 580, logo: 'amazon', class: 'amazon' },
+            
+            // AMEX Gift Cards - minimum $38
+            { id: 'amex-1', type: 'AMEX Gift Card', amount: 200, price: 38, logo: 'AMEX', class: 'amex-gift' },
+            { id: 'amex-2', type: 'AMEX Gift Card', amount: 500, price: 115, logo: 'AMEX', class: 'amex-gift' },
+            { id: 'amex-3', type: 'AMEX Gift Card', amount: 1000, price: 220, logo: 'AMEX', class: 'amex-gift' },
+            { id: 'amex-4', type: 'AMEX Gift Card', amount: 2000, price: 420, logo: 'AMEX', class: 'amex-gift' },
+            { id: 'amex-5', type: 'AMEX Gift Card', amount: 5000, price: 980, logo: 'AMEX', class: 'amex-gift' }
+        ];
+
+        renderGiftCards();
+    }
+
+    function generatePayPalTransfers() {
+        // PayPal transfers: minimum $35
+        paypalTransfers = [
+            { id: 'paypal-1', amount: 100, price: 35 },
+            { id: 'paypal-2', amount: 250, price: 52 },
+            { id: 'paypal-3', amount: 500, price: 98 },
+            { id: 'paypal-4', amount: 1000, price: 185 },
+            { id: 'paypal-5', amount: 2000, price: 360 },
+            { id: 'paypal-6', amount: 5000, price: 850 }
+        ];
+
+        renderPayPalTransfers();
+    }
+
+    function renderCreditCards() {
+        const grid = document.getElementById('credit-cards-grid');
+        grid.innerHTML = '';
+
+        creditCards.forEach(card => {
+            const cardElement = document.createElement('div');
+            cardElement.className = 'credit-card';
+            cardElement.innerHTML = `
+                <div class="card-header">
+                    <div class="country-info">
+                        <img src="https://flagcdn.com/w40/${card.country.code}.png" alt="${card.country.name}" class="flag">
+                        <span>${card.country.name}</span>
+                    </div>
+                    <span class="card-type">${card.type}</span>
+                </div>
+                
+                <div class="card-visual card-${card.type.toLowerCase()}">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div class="card-chip"></div>
+                        <div style="font-weight: bold; font-size: 1.125rem;">${card.type}</div>
+                    </div>
+                    <div class="card-number">${card.maskedNumber}</div>
+                    <div class="card-details">
+                        <div>
+                            <div style="font-size: 0.75rem; opacity: 0.75;">CARDHOLDER</div>
+                            <div>${card.holderName}</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.75rem; opacity: 0.75;">VALID THRU</div>
+                            <div>${card.expiry}</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.75rem; opacity: 0.75;">CVV</div>
+                            <div>***</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="balance">
+                    <div style="color: #9ca3af; margin-bottom: 0.25rem;">Total Balance</div>
+                    <div class="balance-amount">$${card.balance.toLocaleString()}</div>
+                </div>
+                
+                <div class="price">$${card.price}</div>
+                
+                <div style="margin-bottom: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; color: #d1d5db;">
+                        <span style="color: #14b8a6;">✓</span>
+                        Worldwide acceptance
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 1rem;">
+                    <div style="font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem;">Choose Payment Method:</div>
+                    <div class="payment-methods">
+                        <button class="payment-btn binance" onclick="handlePayment('${card.id}', 'binance', 'credit')">Binance</button>
+                        <button class="payment-btn bidget" onclick="handlePayment('${card.id}', 'bidget', 'credit')">Bidget</button>
+                        <button class="payment-btn okx" onclick="handlePayment('${card.id}', 'okx', 'credit')">OKX</button>
+                        <button class="payment-btn skrill" onclick="handlePayment('${card.id}', 'skrill', 'credit')">Skrill</button>
+                        <button class="payment-btn paxful" onclick="handlePayment('${card.id}', 'paxful', 'credit')">Paxful</button>
+                        <button class="payment-btn bybit" onclick="handlePayment('${card.id}', 'bybit', 'credit')">Bybit</button>
+                    </div>
+                </div>
+            `;
+            grid.appendChild(cardElement);
+        });
+    }
+
+    function renderGiftCards() {
+        const grid = document.getElementById('gift-cards-grid');
+        grid.innerHTML = '';
+
+        giftCards.forEach(card => {
+            const cardElement = document.createElement('div');
+            cardElement.className = 'gift-card';
+            cardElement.innerHTML = `
+                <div class="card-header">
+                    <div>${card.type}</div>
+                    <span class="card-type">Gift Card</span>
+                </div>
+                
+                <div class="gift-card-visual ${card.class}">
+                    <div class="gift-card-logo">${card.logo}</div>
+                    <div class="gift-card-amount">$${card.amount.toLocaleString()}</div>
+                </div>
+                
+                <div class="price">$${card.price}</div>
+                
+                <div style="margin-bottom: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; color: #d1d5db;">
+                        <span style="color: #14b8a6;">✓</span>
+                        Worldwide acceptance
+                    </div>
+                </div>
+                
+                <div>
+                    <div style="font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem;">Choose Payment Method:</div>
+                    <div class="payment-methods">
+                        <button class="payment-btn binance" onclick="handlePayment('${card.id}', 'binance', 'gift')">Binance</button>
+                        <button class="payment-btn bidget" onclick="handlePayment('${card.id}', 'bidget', 'gift')">Bidget</button>
+                        <button class="payment-btn okx" onclick="handlePayment('${card.id}', 'okx', 'gift')">OKX</button>
+                        <button class="payment-btn skrill" onclick="handlePayment('${card.id}', 'skrill', 'gift')">Skrill</button>
+                        <button class="payment-btn paxful" onclick="handlePayment('${card.id}', 'paxful', 'gift')">Paxful</button>
+                        <button class="payment-btn bybit" onclick="handlePayment('${card.id}', 'bybit', 'gift')">Bybit</button>
+                    </div>
+                </div>
+            `;
+            grid.appendChild(cardElement);
+        });
+    }
+
+    function renderPayPalTransfers() {
+        const grid = document.getElementById('paypal-transfers-grid');
+        grid.innerHTML = '';
+
+        paypalTransfers.forEach(transfer => {
+            const cardElement = document.createElement('div');
+            cardElement.className = 'credit-card';
+            cardElement.innerHTML = `
+                <div class="card-header">
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.5rem;">💰</span>
+                        <span>PayPal Transfer</span>
+                    </div>
+                    <span class="card-type">Instant</span>
+                </div>
+                
+                <div class="card-visual card-paypal">
+                    <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 2.5rem; font-weight: bold; margin-bottom: 0.5rem;">PayPal</div>
+                            <div style="font-size: 1.5rem; opacity: 0.9;">$${transfer.amount.toLocaleString()}</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="balance">
+                    <div style="color: #9ca3af; margin-bottom: 0.25rem;">Transfer Amount</div>
+                    <div class="balance-amount">$${transfer.amount.toLocaleString()}</div>
+                </div>
+                
+                <div class="price">$${transfer.price}</div>
+                
+                <div style="margin-bottom: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; color: #d1d5db;">
+                        <span style="color: #14b8a6;">✓</span>
+                        Instant transfer
+                    </div>
+                </div>
+                
+                <div>
+                    <div style="font-size: 0.875rem; font-weight: 500; margin-bottom: 0.5rem;">Choose Payment Method:</div>
+                    <div class="payment-methods">
+                        <button class="payment-btn binance" onclick="handlePayment('${transfer.id}', 'binance', 'paypal')">Binance</button>
+                        <button class="payment-btn bidget" onclick="handlePayment('${transfer.id}', 'bidget', 'paypal')">Bidget</button>
+                        <button class="payment-btn okx" onclick="handlePayment('${transfer.id}', 'okx', 'paypal')">OKX</button>
+                        <button class="payment-btn skrill" onclick="handlePayment('${transfer.id}', 'skrill', 'paypal')">Skrill</button>
+                        <button class="payment-btn paxful" onclick="handlePayment('${transfer.id}', 'paxful', 'paypal')">Paxful</button>
+                        <button class="payment-btn bybit" onclick="handlePayment('${transfer.id}', 'bybit', 'paypal')">Bybit</button>
+                    </div>
+                </div>
+            `;
+            grid.appendChild(cardElement);
+        });
+    }
+
+    // Payment handling
+    function handlePayment(cardId, gateway, cardType) {
+        if (!currentUser) {
+            alert('Please login or create an account to purchase cards.');
+            return;
+        }
+
+        if (gateway === 'skrill') {
+            showUnavailableModal(gateway);
+            return;
+        }
+
+        let card;
+        if (cardType === 'credit') {
+            card = creditCards.find(c => c.id.toString() === cardId);
+        } else if (cardType === 'gift') {
+            card = giftCards.find(c => c.id === cardId);
+        } else if (cardType === 'paypal') {
+            card = paypalTransfers.find(c => c.id === cardId);
+        }
+
+        if (!card) {
+            alert('Item not found. Please try again.');
+            return;
+        }
+
+        showPaymentModal(card, gateway, cardType);
+    }
+
+    function showPaymentModal(card, gateway, cardType) {
+        const modal = document.getElementById('payment-modal');
+        const modalBody = document.getElementById('modal-body');
+
+        let modalContent = '';
+
+        if (gateway === 'binance') {
+            modalContent = getBinanceModalContent(card, cardType);
+        } else if (gateway === 'bidget') {
+            modalContent = getBidgetModalContent(card, cardType);
+        } else if (gateway === 'okx') {
+            modalContent = getOkxModalContent(card, cardType);
+        } else if (gateway === 'paxful') {
+            modalContent = getPaxfulModalContent(card, cardType);
+        } else if (gateway === 'bybit') {
+            modalContent = getBybitModalContent(card, cardType);
+        }
+
+        modalBody.innerHTML = modalContent;
+        modal.classList.add('active');
+    }
+
+    function getBinanceModalContent(card, cardType) {
+        const binanceAddress = 'TYDkBcgQn8V9YMzGh8dW92aCzKwhxEP6Ti';
+        let productName = '';
+        let productValue = '';
+        
+        if (cardType === 'credit') {
+            productName = card.type + ' Credit Card';
+            productValue = `Balance: $${card.balance.toLocaleString()}`;
+        } else if (cardType === 'gift') {
+            productName = card.type;
+            productValue = `Gift Card Value: $${card.amount.toLocaleString()}`;
+        } else if (cardType === 'paypal') {
+            productName = 'PayPal Transfer';
+            productValue = `Transfer Amount: $${card.amount.toLocaleString()}`;
+        }
+
+        return `
+            <div class="modal-header">
+                <h2 class="modal-title">🟡 Binance Payment Instructions</h2>
+            </div>
+            
+            <div class="payment-info">
+                <h3 style="color: #14b8a6; margin-bottom: 1rem;">📋 Order Summary</h3>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span>Product:</span>
+                    <span>${productName}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span>Details:</span>
+                    <span style="color: #14b8a6;">${productValue}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-weight: bold; border-top: 1px solid #374151; padding-top: 0.5rem;">
+                    <span>Total Amount:</span>
+                    <span style="color: #f59e0b;">$${card.price}</span>
+                </div>
+            </div>
+
+            <div class="payment-info">
+                <h3 style="color: #f59e0b; margin-bottom: 1rem;">💰 Payment Information</h3>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <div>
+                        <div style="color: #9ca3af;">Deposit Address:</div>
+                        <div style="font-family: monospace; font-weight: bold; color: #f59e0b; word-break: break-all;">${binanceAddress}</div>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('${binanceAddress}')">Copy</button>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <div style="color: #9ca3af;">Amount to Send:</div>
+                        <div style="font-weight: bold; color: #22c55e;">$${card.price} USDT</div>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('${card.price}')">Copy</button>
+                </div>
+            </div>
+
+            <div class="instructions">
+                <h3 style="color: #3b82f6; margin-bottom: 1rem;">📋 Step-by-Step Instructions</h3>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 0.25rem;">Open Binance App</h4>
+                        <p style="color: #9ca3af; font-size: 0.875rem;">Launch your Binance mobile app or visit binance.com</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 0.25rem;">Navigate to Crypto Deposit</h4>
+                        <p style="color: #9ca3af; font-size: 0.875rem;">Go to "Wallet" → "Deposit"</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 0.25rem;">Select USDT and TRC-20 Network</h4>
+                        <p style="color: #9ca3af; font-size: 0.875rem;">Search for USDT and select Tron (TRC-20) network</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 0.25rem;">Use Our Deposit Address</h4>
+                        <p style="color: #9ca3af; font-size: 0.875rem;">Paste our deposit address in the recipient field</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 0.25rem;">Enter Payment Amount</h4>
+                        <p style="color: #9ca3af; font-size: 0.875rem;">Enter exactly <strong style="color: #22c55e;">$${card.price} USDT</strong></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 0.25rem;">Add Order Reference</h4>
+                        <p style="color: #9ca3af; font-size: 0.875rem;">Include order ID: <strong style="color: #14b8a6;">#${card.id}</strong> in the memo</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning">
+                <h4>⚠️ Important Notes</h4>
+                <ul style="margin-left: 1rem; color: #d1d5db;">
+                    <li>Use Tron (TRC-20) network specifically</li>
+                    <li>Only send to the address above</li>
+                    <li>Include order ID in transaction memo</li>
+                    <li>Keep payment receipt for support</li>
+                </ul>
+            </div>
+
+            <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                <button class="btn btn-primary" onclick="redirectToBinance('${binanceAddress}')" style="flex: 1;">Copy Address & Open Binance</button>
+                <button class="btn btn-outline" onclick="closeModal()">Close</button>
+            </div>
+        `;
+    }
+
+    function getBidgetModalContent(card, cardType) {
+        const bidgetUID = '9162022199';
+        let productName = '';
+        let productValue = '';
+        
+        if (cardType === 'credit') {
+            productName = card.type + ' Credit Card';
+            productValue = `Balance: $${card.balance.toLocaleString()}`;
+        } else if (cardType === 'gift') {
+            productName = card.type;
+            productValue = `Gift Card Value: $${card.amount.toLocaleString()}`;
+        } else if (cardType === 'paypal') {
+            productName = 'PayPal Transfer';
+            productValue = `Transfer Amount: $${card.amount.toLocaleString()}`;
+        }
+
+        return `
+            <div class="modal-header">
+                <h2 class="modal-title" style="color: #3b82f6;">🔵 Bidget Payment Instructions</h2>
+            </div>
+            
+            <div class="payment-info">
+                <h3 style="color: #14b8a6; margin-bottom: 1rem;">📋 Order Summary</h3>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span>Product:</span>
+                    <span>${productName}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span>Details:</span>
+                    <span style="color: #14b8a6;">${productValue}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-weight: bold; border-top: 1px solid #374151; padding-top: 0.5rem;">
+                    <span>Total Amount:</span>
+                    <span style="color: #3b82f6;">$${card.price}</span>
+                </div>
+            </div>
+
+            <div class="payment-info">
+                <h3 style="color: #3b82f6; margin-bottom: 1rem;">💰 Payment Information</h3>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <div>
+                        <div style="color: #9ca3af;">Bidget UID:</div>
+                        <div style="font-family: monospace; font-weight: bold; color: #3b82f6;">${bidgetUID}</div>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('${bidgetUID}')">Copy</button>
+                </div>
+                <div style="background: rgba(251, 191, 36, 0.2); border: 1px solid rgba(251, 191, 36, 0.5); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                    <div style="color: #fbbf24; font-weight: 600; margin-bottom: 0.5rem;">💡 What is UID?</div>
+                    <div style="color: #d1d5db; font-size: 0.875rem; margin-bottom: 0.5rem;">UID (User ID) is your unique identifier on Bidget platform. It's used to send payments directly to your account.</div>
+                    <div style="color: #fbbf24; font-weight: 600; margin-bottom: 0.25rem;">⚠️ Important: Network Selection</div>
+                    <div style="color: #d1d5db; font-size: 0.875rem;">Please select <strong style="color: #fbbf24;">Tron (TRC-20)</strong> network when making the deposit</div>
+                </div>
+            </div>
+
+            <div class="instructions">
+                <h3 style="color: #3b82f6; margin-bottom: 1rem;">📋 Step-by-Step Instructions</h3>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 0.25rem;">Open Bidget App</h4>
+                        <p style="color: #9ca3af; font-size: 0.875rem;">Launch your Bidget mobile app or visit bidget.com</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 0.25rem;">Navigate to P2P Transfer</h4>
+                        <p style="color: #9ca3af; font-size: 0.875rem;">Go to "P2P" → "Transfer" or "Send Money"</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 0.25rem;">Select USDT and TRC-20 Network</h4>
+                        <p style="color: #9ca3af; font-size: 0.875rem;">Choose USDT cryptocurrency and select Tron (TRC-20) network</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 0.25rem;">Enter Recipient UID</h4>
+                        <p style="color: #9ca3af; font-size: 0.875rem;">Enter our UID: <strong style="color: #3b82f6;">${bidgetUID}</strong> in the recipient field</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 0.25rem;">Enter Payment Amount</h4>
+                        <p style="color: #9ca3af; font-size: 0.875rem;">Enter exactly <strong style="color: #22c55e;">$${card.price} USDT</strong></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 0.25rem;">Add Order Reference</h4>
+                        <p style="color: #9ca3af; font-size: 0.875rem;">Include order ID: <strong style="color: #14b8a6;">#${card.id}</strong> in the message</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning">
+                <h4>⚠️ Important Notes</h4>
+                <ul style="margin-left: 1rem; color: #d1d5db;">
+                    <li>Must use Tron (TRC-20) network for USDT transfer</li>
+                    <li>Only send to UID: ${bidgetUID}</li>
+                    <li>Include order ID in payment message</li>
+                    <li>UID is case-sensitive, copy exactly as shown</li>
+                </ul>
+            </div>
+
+            <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                <button class="btn btn-primary" onclick="redirectToBidget('${bidgetUID}')" style="flex: 1;">Copy UID & Open Bidget</button>
+                <button class="btn btn-outline" onclick="closeModal()">Close</button>
+            </div>
+        `;
+    }
+
+    function getOkxModalContent(card, cardType) {
+        const okxAddress = 'TQ7jyCwtjQUf5YYU8k1G22MERVpxavXYMB';
+        let productName = '';
+        let productValue = '';
+        
+        if (cardType === 'credit') {
+            productName = card.type + ' Credit Card';
+            productValue = `Balance: $${card.balance.toLocaleString()}`;
+        } else if (cardType === 'gift') {
+            productName = card.type;
+            productValue = `Gift Card Value: $${card.amount.toLocaleString()}`;
+        } else if (cardType === 'paypal') {
+            productName = 'PayPal Transfer';
+            productValue = `Transfer Amount: $${card.amount.toLocaleString()}`;
+        }
+
+        return `
+            <div class="modal-header">
+                <h2 class="modal-title" style="color: #2563eb;">🔷 OKX Payment Instructions</h2>
+            </div>
+            
+            <div class="payment-info">
+                <h3 style="color: #14b8a6; margin-bottom: 1rem;">📋 Order Summary</h3>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span>Product:</span>
+                    <span>${productName}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span>Details:</span>
+                    <span style="color: #14b8a6;">${productValue}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-weight: bold; border-top: 1px solid #374151; padding-top: 0.5rem;">
+                    <span>Total Amount:</span>
+                    <span style="color: #2563eb;">$${card.price}</span>
+                </div>
+            </div>
+
+            <div class="payment-info">
+                <h3 style="color: #2563eb; margin-bottom: 1rem;">💰 Payment Information</h3>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <div>
+                        <div style="color: #9ca3af;">OKX Deposit Address:</div>
+                        <div style="font-family: monospace; font-weight: bold; color: #2563eb; word-break: break-all; font-size: 0.875rem;">${okxAddress}</div>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('${okxAddress}')">Copy</button>
+                </div>
+                <div style="background: rgba(251, 191, 36, 0.2); border: 1px solid rgba(251, 191, 36, 0.5); padding: 1rem; border-radius: 0.5rem;">
+                    <div style="color: #fbbf24; font-weight: 600; margin-bottom: 0.25rem;">⚠️ Important: Network Selection</div>
+                    <div style="color: #d1d5db; font-size: 0.875rem;">Please select <strong style="color: #fbbf24;">Tron (TRC-20)</strong> network when making the deposit</div>
+                </div>
+            </div>
+
+            <div class="warning">
+                <h4>⚠️ Important Notes</h4>
+                <ul style="margin-left: 1rem; color: #d1d5db;">
+                    <li>Must use Tron (TRC-20) network for USDT transfer</li>
+                    <li>Double-check the deposit address before sending</li>
+                    <li>Include order ID in transaction memo</li>
+                </ul>
+            </div>
+
+            <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                <button class="btn btn-primary" onclick="redirectToOkx('${okxAddress}')" style="flex: 1;">Copy Address & Open OKX</button>
+                <button class="btn btn-outline" onclick="closeModal()">Close</button>
+            </div>
+        `;
+    }
+
+    function getPaxfulModalContent(card, cardType) {
+        const paxfulAddress = 'TMKNFyCvEikj5uD3YhUC4rmD6HmbyENTKd';
+        let productName = '';
+        let productValue = '';
+        
+        if (cardType === 'credit') {
+            productName = card.type + ' Credit Card';
+            productValue = `Balance: $${card.balance.toLocaleString()}`;
+        } else if (cardType === 'gift') {
+            productName = card.type;
+            productValue = `Gift Card Value: $${card.amount.toLocaleString()}`;
+        } else if (cardType === 'paypal') {
+            productName = 'PayPal Transfer';
+            productValue = `Transfer Amount: $${card.amount.toLocaleString()}`;
+        }
+
+        return `
+            <div class="modal-header">
+                <h2 class="modal-title" style="color: #22c55e;">🟢 Paxful Payment Instructions</h2>
+            </div>
+            
+            <div class="payment-info">
+                <h3 style="color: #14b8a6; margin-bottom: 1rem;">📋 Order Summary</h3>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span>Product:</span>
+                    <span>${productName}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span>Details:</span>
+                    <span style="color: #14b8a6;">${productValue}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-weight: bold; border-top: 1px solid #374151; padding-top: 0.5rem;">
+                    <span>Total Amount:</span>
+                    <span style="color: #22c55e;">$${card.price}</span>
+                </div>
+            </div>
+
+            <div class="payment-info">
+                <h3 style="color: #22c55e; margin-bottom: 1rem;">💰 Payment Information</h3>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <div>
+                        <div style="color: #9ca3af;">Paxful Address:</div>
+                        <div style="font-family: monospace; font-weight: bold; color: #22c55e; word-break: break-all; font-size: 0.875rem;">${paxfulAddress}</div>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('${paxfulAddress}')">Copy</button>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <div style="color: #9ca3af;">Amount to Send:</div>
+                        <div style="font-weight: bold; color: #22c55e;">$${card.price} USDT</div>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('${card.price}')">Copy</button>
+                </div>
+            </div>
+
+            <div class="warning">
+                <h4>⚠️ Important Notes</h4>
+                <ul style="margin-left: 1rem; color: #d1d5db;">
+                    <li>Must use Tron (TRC-20) network for USDT transfer</li>
+                    <li>Only send to address: ${paxfulAddress}</li>
+                    <li>Include order ID in transaction memo</li>
+                    <li>Keep transaction receipt for support</li>
+                </ul>
+            </div>
+
+            <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                <button class="btn btn-primary" onclick="redirectToPaxful('${paxfulAddress}')" style="flex: 1;">Copy Address & Open Paxful</button>
+                <button class="btn btn-outline" onclick="closeModal()">Close</button>
+            </div>
+        `;
+    }
+
+    function getBybitModalContent(card, cardType) {
+        const bybitAddress = '0xeb20e3a216cd87767c049dacbb5a7bc34a978421';
+        let productName = '';
+        let productValue = '';
+        
+        if (cardType === 'credit') {
+            productName = card.type + ' Credit Card';
+            productValue = `Balance: $${card.balance.toLocaleString()}`;
+        } else if (cardType === 'gift') {
+            productName = card.type;
+            productValue = `Gift Card Value: $${card.amount.toLocaleString()}`;
+        } else if (cardType === 'paypal') {
+            productName = 'PayPal Transfer';
+            productValue = `Transfer Amount: $${card.amount.toLocaleString()}`;
+        }
+
+        return `
+            <div class="modal-header">
+                <h2 class="modal-title" style="color: #6b7280;">⚫ Bybit Payment Instructions</h2>
+            </div>
+            
+            <div class="payment-info">
+                <h3 style="color: #14b8a6; margin-bottom: 1rem;">📋 Order Summary</h3>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span>Product:</span>
+                    <span>${productName}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span>Details:</span>
+                    <span style="color: #14b8a6;">${productValue}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-weight: bold; border-top: 1px solid #374151; padding-top: 0.5rem;">
+                    <span>Total Amount:</span>
+                    <span style="color: #6b7280;">$${card.price}</span>
+                </div>
+            </div>
+
+            <div class="payment-info">
+                <h3 style="color: #6b7280; margin-bottom: 1rem;">💰 Payment Information</h3>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <div>
+                        <div style="color: #9ca3af;">Bybit Deposit Address:</div>
+                        <div style="font-family: monospace; font-weight: bold; color: #6b7280; word-break: break-all; font-size: 0.875rem;">${bybitAddress}</div>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('${bybitAddress}')">Copy</button>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <div>
+                        <div style="color: #9ca3af;">Amount to Send:</div>
+                        <div style="font-weight: bold; color: #22c55e;">$${card.price} USDT</div>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('${card.price}')">Copy</button>
+                </div>
+                <div style="background: rgba(251, 191, 36, 0.2); border: 1px solid rgba(251, 191, 36, 0.5); padding: 1rem; border-radius: 0.5rem;">
+                    <div style="color: #fbbf24; font-weight: 600; margin-bottom: 0.25rem;">⚠️ Important: Network Selection</div>
+                    <div style="color: #d1d5db; font-size: 0.875rem;">Please select <strong style="color: #fbbf24;">Ethereum (ERC-20)</strong> network when making the deposit</div>
+                </div>
+            </div>
+
+            <div class="instructions">
+                <h3 style="color: #3b82f6; margin-bottom: 1rem;">📋 Step-by-Step Instructions</h3>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 0.25rem;">Open Bybit App</h4>
+                        <p style="color: #9ca3af; font-size: 0.875rem;">Launch your Bybit mobile app or visit bybit.com</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 0.25rem;">Navigate to Crypto Deposit</h4>
+                        <p style="color: #9ca3af; font-size: 0.875rem;">Go to "Assets" → "Deposit"</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 0.25rem;">Select USDT and ERC-20 Network</h4>
+                        <p style="color: #9ca3af; font-size: 0.875rem;">Choose USDT and select Ethereum (ERC-20) network</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 0.25rem;">Use Our Deposit Address</h4>
+                        <p style="color: #9ca3af; font-size: 0.875rem;">Paste our deposit address in the recipient field</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 0.25rem;">Enter Payment Amount</h4>
+                        <p style="color: #9ca3af; font-size: 0.875rem;">Enter exactly <strong style="color: #22c55e;">$${card.price} USDT</strong></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <div>
+                        <h4 style="color: white; margin-bottom: 0.25rem;">Add Order Reference</h4>
+                        <p style="color: #9ca3af; font-size: 0.875rem;">Include order ID: <strong style="color: #14b8a6;">#${card.id}</strong> in the memo</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning">
+                <h4>⚠️ Important Notes</h4>
+                <ul style="margin-left: 1rem; color: #d1d5db;">
+                    <li>Must use Ethereum (ERC-20) network for USDT transfer</li>
+                    <li>Only send to the address above</li>
+                    <li>Include order ID in transaction memo</li>
+                    <li>ERC-20 transactions may have higher fees than TRC-20</li>
+                </ul>
+            </div>
+
+            <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                <button class="btn btn-primary" onclick="redirectToBybit('${bybitAddress}')" style="flex: 1;">Copy Address & Open Bybit</button>
+                <button class="btn btn-outline" onclick="closeModal()">Close</button>
+            </div>
+        `;
+    }
+
+    function showUnavailableModal(gateway) {
+        const modal = document.getElementById('payment-modal');
+        const modalBody = document.getElementById('modal-body');
+
+        modalBody.innerHTML = `
+            <div class="modal-header">
+                <h2 class="modal-title" style="color: #f59e0b;">⚠️ Payment Method Unavailable</h2>
+            </div>
+            
+            <div style="text-align: center; padding: 2rem;">
+                <div style="font-size: 4rem; margin-bottom: 1rem;">⏰</div>
+                <h3 style="color: #f59e0b; margin-bottom: 1rem;">${gateway.charAt(0).toUpperCase() + gateway.slice(1)} Payment</h3>
+                <p style="color: #d1d5db; margin-bottom: 1.5rem;">
+                    We're sorry, but ${gateway.charAt(0).toUpperCase() + gateway.slice(1)} payment method is temporarily unavailable.
+                </p>
+                <div style="background: #374151; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                    <p style="color: #d1d5db; font-size: 0.875rem;">
+                        Our team is working to restore this payment option as soon as possible. Please try one of our other available payment methods.
+                    </p>
+                </div>
+                <div style="color: #14b8a6; font-size: 0.875rem;">Available payment methods: Binance, Bidget, OKX, Paxful, Bybit</div>
+            </div>
+
+            <div style="text-align: center;">
+                <button class="btn btn-primary" onclick="closeModal()">Choose Another Payment Method</button>
+            </div>
+        `;
+
+        modal.classList.add('active');
+    }
+
+    function closeModal() {
+        document.getElementById('payment-modal').classList.remove('active');
+    }
+
+    // Screenshot upload handling
+    function previewFile() {
+        const fileInput = document.getElementById('screenshot-file');
+        const preview = document.getElementById('file-preview');
+        const previewImage = document.getElementById('preview-image');
+        const fileInfo = document.getElementById('file-info');
+        
+        const file = fileInput.files[0];
+        
+        if (file) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                previewImage.src = e.target.result;
+                fileInfo.textContent = `File: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+                preview.style.display = 'block';
+            };
+            
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function handleScreenshotUpload(event) {
+        event.preventDefault();
+        
+        const fileInput = document.getElementById('screenshot-file');
+        const orderIdInput = document.getElementById('order-id');
+        const notesInput = document.getElementById('upload-notes');
+        
+        const file = fileInput.files[0];
+        const orderId = orderIdInput.value;
+        const notes = notesInput.value;
+        
+        if (!file) {
+            alert('Please select a screenshot to upload.');
+            return;
+        }
+        
+        if (file.size > 10 * 1024 * 1024) { // 10MB limit
+            alert('File size must be less than 10MB.');
+            return;
+        }
+        
+        // Simulate email sending to cardersworldwide@gmail.com
+        showLoading();
+        
+        setTimeout(() => {
+            hideLoading();
+            
+            // Reset form
+            document.getElementById('screenshot-file').value = '';
+            document.getElementById('order-id').value = '';
+            document.getElementById('upload-notes').value = '';
+            document.getElementById('file-preview').style.display = 'none';
+            
+            showToast('Screenshot submitted successfully! Our team will review it within 30 minutes.');
+        }, 2000);
+    }
+
+    // Utility functions
+    function copyToClipboard(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Copied to clipboard!');
+            }).catch(err => {
+                fallbackCopyTextToClipboard(text);
+            });
+        } else {
+            fallbackCopyTextToClipboard(text);
+        }
+    }
+
+    function fallbackCopyTextToClipboard(text) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+            document.execCommand('copy');
+            showToast('Copied to clipboard!');
+        } catch (err) {
+            console.error('Fallback copy failed:', err);
+            alert('Please manually copy: ' + text);
+        }
+        
+        document.body.removeChild(textArea);
+    }
+
+    function showToast(message) {
+        // Create toast element
+        const toast = document.createElement('div');
+        toast.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #22c55e;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            z-index: 10000;
+            font-weight: 500;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.3s ease-out;
+        `;
+        toast.textContent = message;
+        
+        // Add animation keyframes
+        if (!document.getElementById('toast-styles')) {
+            const style = document.createElement('style');
+            style.id = 'toast-styles';
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        document.body.appendChild(toast);
+        
+        // Remove toast after 3 seconds
+        setTimeout(() => {
+            toast.style.animation = 'slideOut 0.3s ease-out';
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.parentNode.removeChild(toast);
+                }
+            }, 300);
+        }, 3000);
+    }
+
+    function showLoading() {
+        document.getElementById('loading-overlay').classList.add('active');
+    }
+
+    function hideLoading() {
+        document.getElementById('loading-overlay').classList.remove('active');
+    }
+
+    // Redirect functions
+    function redirectToBinance(address) {
+        copyToClipboard(address);
+        showLoading();
+        
+        setTimeout(() => {
+            const binanceUrl = 'https://www.binance.com/en/my/wallet/account/main/deposit';
+            const newWindow = window.open(binanceUrl, '_blank', 'noopener,noreferrer');
+            
+            if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                alert(`Popup blocked! Please manually visit: ${binanceUrl}
+
+Deposit Address ${address} has been copied to your clipboard.
+Please select USDT and Tron (TRC-20) network for deposit.`);
+            }
+            
+            hideLoading();
+            closeModal();
+        }, 1000);
+    }
+
+    function redirectToBidget(uid) {
+        copyToClipboard(uid);
+        showLoading();
+        
+        setTimeout(() => {
+            const bidgetUrl = 'https://www.bidget.com/trade/p2p';
+            const newWindow = window.open(bidgetUrl, '_blank', 'noopener,noreferrer');
+            
+            if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                alert(`Popup blocked! Please manually visit: ${bidgetUrl}
+
+UID ${uid} has been copied to your clipboard.
+Please select USDT and Tron (TRC-20) network.`);
+            }
+            
+            hideLoading();
+            closeModal();
+        }, 1000);
+    }
+
+    function redirectToOkx(address) {
+        copyToClipboard(address);
+        showLoading();
+        
+        setTimeout(() => {
+            const okxUrl = 'https://www.okx.com/web3/wallet/deposit';
+            const newWindow = window.open(okxUrl, '_blank', 'noopener,noreferrer');
+            
+            if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                alert(`Popup blocked! Please manually visit: ${okxUrl}
+
+Deposit address ${address} has been copied to your clipboard.
+Please select USDT and Tron (TRC-20) network.`);
+            }
+            
+            hideLoading();
+            closeModal();
+        }, 1000);
+    }
+
+    function redirectToPaxful(address) {
+        copyToClipboard(address);
+        showLoading();
+        
+        setTimeout(() => {
+            const paxfulUrl = 'https://paxful.com/';
+            const newWindow = window.open(paxfulUrl, '_blank', 'noopener,noreferrer');
+            
+            if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                alert(`Popup blocked! Please manually visit: ${paxfulUrl}
+
+Payment address ${address} has been copied to your clipboard.
+Please send USDT via Tron (TRC-20) network.`);
+            } else {
+                setTimeout(() => {
+                    alert(`Please complete your Paxful payment:
+
+1. Send USDT via Tron (TRC-20) network
+2. Use address: ${address}
+3. Include your order ID in the transaction memo
+4. Complete the payment
+
+The address has been copied to your clipboard.`);
+                }, 1000);
+            }
+            
+            hideLoading();
+            closeModal();
+        }, 1000);
+    }
+
+    function redirectToBybit(address) {
+        copyToClipboard(address);
+        showLoading();
+        
+        setTimeout(() => {
+            const bybitUrl = 'https://www.bybit.com/fiat/deposit';
+            const newWindow = window.open(bybitUrl, '_blank', 'noopener,noreferrer');
+            
+            if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+                alert(`Popup blocked! Please manually visit: ${bybitUrl}
+
+Deposit address ${address} has been copied to your clipboard.
+Please select USDT and Ethereum (ERC-20) network.`);
+            } else {
+                setTimeout(() => {
+                    alert(`Please complete your Bybit payment:
+
+1. Select USDT and Ethereum (ERC-20) network
+2. Use address: ${address}
+3. Send exactly the required amount
+4. Include your order ID in the transaction memo
+
+The address has been copied to your clipboard.`);
+                }, 1000);
+            }
+            
+            hideLoading();
+            closeModal();
+        }, 1000);
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('payment-modal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeModal();
+        }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
+    });
+</script>
+</body>
+</html>
