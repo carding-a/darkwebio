@@ -1403,16 +1403,16 @@
             
             let balance, price;
             
-            // Ensure Visa and Mastercard have minimum $50 price
+            // Ensure Visa and Mastercard have minimum $31 price
             if (cardType === 'VISA' || cardType === 'Mastercard') {
-                // Balance range: $700-$6500 for Visa/Mastercard
-                balance = Math.floor(Math.random() * (6500 - 700 + 1)) + 700;
-                // Price range: $50-$210 for Visa/Mastercard
-                price = Math.floor(50 + (balance - 700) / (6500 - 700) * (210 - 50));
+                // Balance range: $448-$4210 for Visa/Mastercard
+                balance = Math.floor(Math.random() * (4210 - 448 + 1)) + 448;
+                // Price range: $31-$140 for Visa/Mastercard
+                price = Math.floor(31 + (balance - 448) / (4210 - 448) * (140 - 31));
             } else {
                 // AMEX can have lower prices
-                balance = Math.floor(Math.random() * (4500 - 500 + 1)) + 500;
-                price = Math.floor(25 + (balance - 500) / (4500 - 500) * (150 - 25));
+                balance = Math.floor(Math.random() * (3000 - 370 + 1)) + 370;
+                price = Math.floor(20 + (balance - 370) / (3000 - 370) * (120 - 20));
             }
             
             const cardNumber = generateRandomCardNumber(cardType);
@@ -1464,12 +1464,12 @@
     function generatePayPalTransfers() {
         // PayPal transfers: minimum $35
         paypalTransfers = [
-            { id: 'paypal-1', amount: 100, price: 35 },
-            { id: 'paypal-2', amount: 250, price: 52 },
-            { id: 'paypal-3', amount: 500, price: 98 },
-            { id: 'paypal-4', amount: 1000, price: 185 },
-            { id: 'paypal-5', amount: 2000, price: 360 },
-            { id: 'paypal-6', amount: 5000, price: 850 }
+            { id: 'paypal-1', amount: 150, price: 34 },
+            { id: 'paypal-2', amount: 250, price: 42 },
+            { id: 'paypal-3', amount: 500, price: 55 },
+            { id: 'paypal-4', amount: 1000, price: 95 },
+            { id: 'paypal-5', amount: 2000, price: 170 },
+            { id: 'paypal-6', amount: 5000, price: 500 }
         ];
 
         renderPayPalTransfers();
