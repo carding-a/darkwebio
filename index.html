@@ -1405,10 +1405,10 @@
             
             // Ensure Visa and Mastercard have minimum $28 price
             if (cardType === 'VISA' || cardType === 'Mastercard') {
-                // Balance range: $422-$2600 for Visa/Mastercard
-                balance = Math.floor(Math.random() * (2600 - 422 + 1)) + 422;
+                // Balance range: $402-$2300 for Visa/Mastercard
+                balance = Math.floor(Math.random() * (2300 - 402 + 1)) + 402;
                 // Price range: 28-$134 for Visa/Mastercard
-                price = Math.floor(28+ (balance - 402) / (2600 - 422) * (134 - 28));
+                price = Math.floor(28+ (balance - 402) / (2600 - 402) * (134 - 28));
             } else {
                 // AMEX can have lower prices
                 balance = Math.floor(Math.random() * (2100 - 281 + 1)) + 281;
@@ -2512,4 +2512,5 @@ The address has been copied to your clipboard.`);
 </script>
 </body>
 </html>
+
 
