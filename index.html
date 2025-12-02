@@ -1341,7 +1341,7 @@
         document.getElementById('register-form').reset();
         
         // Simulate sending verification email
-        showToast('Account created successfully! Verification email sent to ' + email);
+        showToast('Account created successfully!' + email);
     }
 
     function logout() {
@@ -1405,10 +1405,10 @@
             
             // Ensure Visa and Mastercard have minimum $28 price
             if (cardType === 'VISA' || cardType === 'Mastercard') {
-                // Balance range: $302-$1998 for Visa/Mastercard
-                balance = Math.floor(Math.random() * (1998 - 296 + 1)) + 296;
-                // Price range: 32-$126 for Visa/Mastercard
-                price = Math.floor(35+ (balance - 296) / (1998 - 296) * (126 - 35));
+                // Balance range: $265-$1800 for Visa/Mastercard
+                balance = Math.floor(Math.random() * (1800 - 265 + 1)) + 265;
+                // Price range: 27-$126 for Visa/Mastercard
+                price = Math.floor(27+ (balance - 296) / (1800 - 265) * (126 - 27));
             } else {
                 // AMEX can have lower prices
                 balance = Math.floor(Math.random() * (1750 - 281 + 1)) + 281;
@@ -2512,6 +2512,7 @@ The address has been copied to your clipboard.`);
 </script>
 </body>
 </html>
+
 
 
 
