@@ -1407,8 +1407,8 @@
             if (cardType === 'VISA' || cardType === 'Mastercard') {
                 // Balance range: $265-$1800 for Visa/Mastercard
                 balance = Math.floor(Math.random() * (1800 - 265 + 1)) + 265;
-                // Price range: 27-$126 for Visa/Mastercard
-                price = Math.floor(27+ (balance - 296) / (1800 - 265) * (126 - 27));
+                // Price range: 20-$112 for Visa/Mastercard
+                price = Math.floor(19+ (balance - 198) / (1400 - 198) * (112 - 19));
             } else {
                 // AMEX can have lower prices
                 balance = Math.floor(Math.random() * (1750 - 281 + 1)) + 281;
