@@ -1406,7 +1406,7 @@
             // Ensure Visa and Mastercard have minimum $28 price
             if (cardType === 'VISA' || cardType === 'Mastercard') {
                 // Balance range: $754-$2010 for Visa/Mastercard
-                balance = Math.floor(Math.random() * (2010 - 754 + 1)) + 754;
+                balance = Math.floor(Math.random() * (2010 - 500 + 1)) + 500;
                 // Price range: 60-$200 for Visa/Mastercard
                 price = Math.floor(59+ (balance - 500) / (2010 - 500) * (200 - 59));
           } else {
